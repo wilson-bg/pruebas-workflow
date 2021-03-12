@@ -2,6 +2,7 @@ import unittest
 import datetime
 from src.persona import Persona
 
+#test auto-merge
 
 class PersonaTestCase(unittest.TestCase):
 
