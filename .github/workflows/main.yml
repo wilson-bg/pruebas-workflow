@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@main
     - name: Format and check with shfmt
-      uses: wilson-bg/pruebas-workflow@main
+      uses: actions/checkout@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SHFMT_ARGS: -i 2 -ci
