@@ -12,6 +12,6 @@ jobs:
     steps:
       - name: Create Release
         id: create_release
-        uses: wilson-bg/pruebas-workflow@v1
+        uses: actions/checkout@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
