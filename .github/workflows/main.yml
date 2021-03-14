@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@main
     - name: Format and check with shfmt
-      uses: bltavares/actions/shfmt@master
+      uses: wilson-bg/actions/pruebas-workflow@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SHFMT_ARGS: -i 2 -ci
@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@main
     - name: Create GitHub release
-      uses: Roang-zero1/github-create-release-action@master
+      uses: wilson-bg/pruebas-workflow@main
       with:
         version_regex: '^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+'
         update_existing: 'true'
