@@ -1,27 +1,19 @@
+name: Release
 on:
   push:
-    # Sequence of patterns matched against refs/tags
-    branches: [ main ]
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
-
-name: Create Release
+    branches:
+      - main
+      - "*.x" # maintenance releases branches
 
 jobs:
-  build:
-    name: Create Release
+  release:
+    name: release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - uses: bahmutov/npm-install@v1
+      - run: npx semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          bodyfile: "body.md"
-          draft: false
-          prerelease: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_NPM_TOKEN }}
